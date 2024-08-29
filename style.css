@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "IBM Plex Mono", monospace;
+  background-color: #cccccc;
+  color: #1a1a1a;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.book-card {
+  height: 200px;
+  background-color: #f3f1f1;
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 25px;
+}
+
+.book-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.book-author,
+.pages {
+  font-size: 0.9rem;
+}
