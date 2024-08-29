@@ -10,25 +10,29 @@ function Book(title, author, pages) {
 
 const lordOfTheRings = new Book("Lord of The Rings", "Tolkien", 400);
 const harryPotter = new Book("Harry Potter", "JK Rowling", 599);
-const crepusculo = new Book("Crepusculo", "Sei la", 200);
+const sherlockHolmes = new Book(
+  "Sherlock Holmes",
+  "Sir Arthur Conan Doyle",
+  200
+);
 
 myLibrary.push(lordOfTheRings);
 myLibrary.push(harryPotter);
-myLibrary.push(crepusculo);
+myLibrary.push(sherlockHolmes);
 
-function mostrarLivros(library) {
+function showBooks(library) {
   library.forEach((book) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
 
     bookCard.innerHTML = `
         <div class="book-title">${book.title}</div>
-        <div class="book-author">${book.author}</div>
-        <div class="pages">${book.pages} Pages</div>
+        <div class="book-author">Author: ${book.author}</div>
+        <div class="pages">Pages: ${book.pages}</div>
       `;
 
     main.appendChild(bookCard);
   });
 }
 
-mostrarLivros(myLibrary);
+showBooks(myLibrary);
