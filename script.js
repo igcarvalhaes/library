@@ -1,3 +1,5 @@
+const showDialogButton = document.querySelector("#showDialog");
+const cancelButton = document.querySelector("#cancel");
 const main = document.querySelector("main");
 
 const myLibrary = [];
@@ -34,5 +36,25 @@ function showBooks(library) {
     main.appendChild(bookCard);
   });
 }
+
+// modal settings
+
+function openCheck(dialog) {
+  if (dialog.open) {
+    console.log("Dialog open");
+  } else {
+    console.log("Dialog closed");
+  }
+}
+
+showDialogButton.addEventListener("click", () => {
+  dialog.showModal();
+  openCheck(dialog);
+});
+
+cancelButton.addEventListener("click", () => {
+  dialog.close();
+  openCheck(dialog);
+});
 
 showBooks(myLibrary);

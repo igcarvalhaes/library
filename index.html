@@ -13,7 +13,34 @@
     <title>Library</title>
   </head>
   <body>
-    <button class="btn">Add Book</button>
+    <dialog id="dialog">
+      <form method="dialog">
+        <div class="form-group">
+          <div class="input-group">
+            <label for="book-title">Book Title</label>
+            <input type="text" name="user-book-title" id="book-title" />
+          </div>
+
+          <div class="input-group">
+            <label for="book-author">Author</label>
+            <input type="text" name="user-book-author" id="book-author" />
+          </div>
+
+          <div class="input-group">
+            <label for="book-pages">Pages</label>
+            <input type="number" name="user-book-pages" id="book-pages" />
+          </div>
+
+          <div class="button-confirm-cancel">
+            <button class="btn" id="cancel" type="reset">Cancel</button>
+            <button class="btn" type="submit">Confirm</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <button id="showDialog" class="btn">Add Book</button>
+
     <main></main>
     <script src="script.js"></script>
   </body>
