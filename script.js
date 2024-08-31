@@ -34,6 +34,7 @@ function showBooks(library) {
         <div class="book-title">${book.title}</div>
         <div class="book-author">Author: ${book.author}</div>
         <div class="pages">Pages: ${book.pages}</div>
+        <button id="deleteBtn" class="btn" >Delete Book</button>
       `;
 
     main.appendChild(bookCard);
