@@ -1,5 +1,6 @@
 const showDialogButton = document.querySelector("#showDialog");
 const cancelButton = document.querySelector("#cancel");
+const form = document.querySelector("#form");
 const main = document.querySelector("main");
 
 const myLibrary = [];
@@ -26,6 +27,8 @@ function showBooks(library) {
   library.forEach((book) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
+
+    bookCard.innerHTML = "";
 
     bookCard.innerHTML = `
         <div class="book-title">${book.title}</div>
@@ -55,6 +58,30 @@ showDialogButton.addEventListener("click", () => {
 cancelButton.addEventListener("click", () => {
   dialog.close();
   openCheck(dialog);
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let bookTitle = document.querySelector("#book-title").value;
+  let bookAuthor = document.querySelector("#book-author").value;
+  let bookPages = +document.querySelector("#book-pages").value;
+
+  const newBook = new Book(bookTitle, bookAuthor, bookPages);
+
+  myLibrary.push(newBook);
+
+  // limpando o container main para evitar duplicidade do array na tela
+  main.innerHTML = "";
+
+  // exibir o conteúdo do array na tela novamente
+  showBooks(myLibrary);
+
+  dialog.close();
+
+  console.log(bookTitle);
+  console.log(bookAuthor);
+  console.log(bookPages);
 });
 
 showBooks(myLibrary);
