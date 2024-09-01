@@ -67,7 +67,7 @@ main {
 }
 
 .book-card {
-  height: 200px;
+  height: 250px;
   background-color: white;
   width: 200px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
@@ -95,4 +95,10 @@ main {
 .book-author,
 .pages {
   font-size: 0.9rem;
+}
+
+.bookRead {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }

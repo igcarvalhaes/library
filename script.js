@@ -5,10 +5,11 @@ const main = document.querySelector("main");
 
 const myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = read === true ? true : false;
 }
 
 const lordOfTheRings = new Book("Lord of The Rings", "Tolkien", 400);
@@ -37,11 +38,22 @@ function showBooks(library) {
         <div class="book-title">${book.title}</div>
         <div class="book-author">Author: ${book.author}</div>
         <div class="pages">Pages: ${book.pages}</div>
+        <div class="bookRead">
+        <label for="my-toggle">Read:</label>
+        <input type="checkbox" id="my-toggle">
+         </div>
         <button class="btn deleteBtn">Delete Book</button>
       `;
 
     main.appendChild(bookCard);
 
+    const checkBox = bookCard.querySelector("#my-toggle");
+    checkBox.checked = book.read;
+    checkBox.addEventListener("change", () => {
+      updateBookStatus(index - 1);
+    });
+
+    // deletar o card do livro específico
     const deleteButton = bookCard.querySelector(".deleteBtn");
     deleteButton.addEventListener("click", () => {
       if (bookCard["data-index"] == index) {
@@ -55,24 +67,18 @@ function showBooks(library) {
   });
 }
 
-// modal settings
-
-function openCheck(dialog) {
-  if (dialog.open) {
-    console.log("Dialog open");
-  } else {
-    console.log("Dialog closed");
-  }
+function updateBookStatus(index) {
+  myLibrary[index].read = !myLibrary[index].read;
 }
+
+// modal settings
 
 showDialogButton.addEventListener("click", () => {
   dialog.showModal();
-  openCheck(dialog);
 });
 
 cancelButton.addEventListener("click", () => {
   dialog.close();
-  openCheck(dialog);
 });
 
 form.addEventListener("submit", (event) => {
@@ -93,10 +99,6 @@ form.addEventListener("submit", (event) => {
   showBooks(myLibrary);
 
   dialog.close();
-
-  console.log(bookTitle);
-  console.log(bookAuthor);
-  console.log(bookPages);
 });
 
 showBooks(myLibrary);
