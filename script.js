@@ -56,11 +56,11 @@ function showBooks(library) {
     // deletar o card do livro específico
     const deleteButton = bookCard.querySelector(".deleteBtn");
     deleteButton.addEventListener("click", () => {
-      if (bookCard["data-index"] == index) {
-        library.splice(index, 1);
+      if (library.length === 1) {
+        library.shift();
         showBooks(library);
       } else {
-        library.shift();
+        library.splice(index - 1, 1);
         showBooks(library);
       }
     });
