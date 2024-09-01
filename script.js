@@ -24,20 +24,34 @@ myLibrary.push(harryPotter);
 myLibrary.push(sherlockHolmes);
 
 function showBooks(library) {
-  library.forEach((book) => {
+  main.innerHTML = "";
+
+  library.forEach((book, index) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
 
-    bookCard.innerHTML = "";
+    // colocando um valor correspondente ao index do objeto no array
+    bookCard.setAttribute("data-index", index++);
 
     bookCard.innerHTML = `
         <div class="book-title">${book.title}</div>
         <div class="book-author">Author: ${book.author}</div>
         <div class="pages">Pages: ${book.pages}</div>
-        <button id="deleteBtn" class="btn" >Delete Book</button>
+        <button class="btn deleteBtn">Delete Book</button>
       `;
 
     main.appendChild(bookCard);
+
+    const deleteButton = bookCard.querySelector(".deleteBtn");
+    deleteButton.addEventListener("click", () => {
+      if (bookCard["data-index"] == index) {
+        library.splice(index, 1);
+        showBooks(library);
+      } else {
+        library.shift();
+        showBooks(library);
+      }
+    });
   });
 }
 

@@ -80,7 +80,7 @@ main {
   position: relative;
 }
 
-#deleteBtn {
+.deleteBtn {
   position: absolute;
   bottom: 0;
   left: 0;
