@@ -102,3 +102,7 @@ main {
   align-items: center;
   gap: 20px;
 }
+
+.m-b-2x {
+  margin-bottom: 20px;
+}

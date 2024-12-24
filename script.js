@@ -3,8 +3,6 @@ const cancelButton = document.querySelector("#cancel");
 const form = document.querySelector("#form");
 const main = document.querySelector("main");
 
-const myLibrary = [];
-
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -12,17 +10,22 @@ function Book(title, author, pages, read) {
   this.read = read === true ? true : false;
 }
 
-const lordOfTheRings = new Book("Lord of The Rings", "Tolkien", 400);
-const harryPotter = new Book("Harry Potter", "JK Rowling", 599);
-const sherlockHolmes = new Book(
-  "Sherlock Holmes",
-  "Sir Arthur Conan Doyle",
-  200
-);
+function setItemsToLocalStorage(myLibrary) {
+  localStorage.setItem("livraria", JSON.stringify(myLibrary));
+}
 
-myLibrary.push(lordOfTheRings);
-myLibrary.push(harryPotter);
-myLibrary.push(sherlockHolmes);
+function getItemsFromLocalStorage() {
+  const storedData = localStorage.getItem("livraria");
+
+  if (storedData) {
+    const data = JSON.parse(storedData);
+    return data;
+  } else {
+    return [];
+  }
+}
+
+const myLibrary = getItemsFromLocalStorage();
 
 function showBooks(library) {
   main.innerHTML = "";
@@ -58,9 +61,11 @@ function showBooks(library) {
     deleteButton.addEventListener("click", () => {
       if (library.length === 1) {
         library.shift();
+        setItemsToLocalStorage(library);
         showBooks(library);
       } else {
         library.splice(index - 1, 1);
+        setItemsToLocalStorage(library);
         showBooks(library);
       }
     });
@@ -91,6 +96,7 @@ form.addEventListener("submit", (event) => {
   const newBook = new Book(bookTitle, bookAuthor, bookPages);
 
   myLibrary.push(newBook);
+  setItemsToLocalStorage(myLibrary);
 
   // limpando o container main para evitar duplicidade do array na tela
   main.innerHTML = "";
