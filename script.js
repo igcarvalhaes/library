@@ -3,6 +3,7 @@ const cancelButton = document.querySelector("#cancel");
 const form = document.querySelector("#form");
 const main = document.querySelector("main");
 const totalPages = document.querySelector(".totalPages");
+const deleteAllBooksBtn = document.querySelector("#deleteAllBooksBtn");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -24,6 +25,10 @@ function getItemsFromLocalStorage() {
   } else {
     return [];
   }
+}
+
+function deleteItemsFromLocalStorage() {
+  localStorage.removeItem("livraria");
 }
 
 const myLibrary = getItemsFromLocalStorage();
@@ -74,7 +79,7 @@ function showBooks(library) {
     });
 
     const pagesTotal = showTotalPages(library);
-    totalPages.innerHTML = `${pagesTotal}`;
+    totalPages.innerHTML = `${pagesTotal}.`;
   });
 }
 
@@ -124,6 +129,12 @@ form.addEventListener("submit", (event) => {
   showBooks(myLibrary);
 
   dialog.close();
+});
+
+// delete all buttons event
+deleteAllBooksBtn.addEventListener("click", () => {
+  deleteItemsFromLocalStorage();
+  location.reload();
 });
 
 showBooks(myLibrary);

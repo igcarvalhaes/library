@@ -106,3 +106,7 @@ main {
 .m-b-2x {
   margin-bottom: 20px;
 }
+
+.font-bold {
+  font-weight: 700;
+}
