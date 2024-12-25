@@ -54,6 +54,7 @@ function showBooks(library) {
     checkBox.checked = book.read;
     checkBox.addEventListener("change", () => {
       updateBookStatus(index - 1);
+      setItemsToLocalStorage(library);
     });
 
     // deletar o card do livro específico
