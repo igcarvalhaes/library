@@ -2,6 +2,7 @@ const showDialogButton = document.querySelector("#showDialog");
 const cancelButton = document.querySelector("#cancel");
 const form = document.querySelector("#form");
 const main = document.querySelector("main");
+const totalPages = document.querySelector(".totalPages");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -55,6 +56,7 @@ function showBooks(library) {
     checkBox.addEventListener("change", () => {
       updateBookStatus(index - 1);
       setItemsToLocalStorage(library);
+      location.reload();
     });
 
     // deletar o card do livro específico
@@ -70,11 +72,27 @@ function showBooks(library) {
         showBooks(library);
       }
     });
+
+    const pagesTotal = showTotalPages(library);
+    totalPages.innerHTML = `${pagesTotal}`;
   });
 }
 
 function updateBookStatus(index) {
   myLibrary[index].read = !myLibrary[index].read;
+}
+
+// Total pages func
+function showTotalPages(library) {
+  const onlyPages = library
+    .map((books) => {
+      return {
+        pages: books.pages,
+        read: books.read,
+      };
+    })
+    .reduce((acc, book) => (book.read ? acc + book.pages : acc), 0);
+  return onlyPages;
 }
 
 // modal settings
